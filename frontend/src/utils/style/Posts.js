@@ -11,7 +11,7 @@ export const UlElement = styled.ul`
   position: absolute;
   left: 20%;
   display: grid;
-  grid-template-columns: repeat(4, 3fr);
+  grid-template-columns: repeat(6, 5fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
 `;
@@ -20,11 +20,12 @@ export const LiElement = styled.li`
   margin: 10px;
   background: linear-gradient(${colors.primary}, ${colors.secondary});
   height: 40px;
-  width: 300px;
+  width: 200px;
   list-style: none;
   border-radius: 10px 10px 10px 10px;
   text-align: center;
-  padding: 70px 0;
+  padding: 35px 0;
+  cursor: pointer;
   &:hover {
     opacity: 0.8;
   }

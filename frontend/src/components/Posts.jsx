@@ -3,12 +3,13 @@ import axios from "axios";
 import { Link, Navigate } from "react-router-dom";
 import {MainImagePosts, LiElement, UlElement} from "../utils/style/Posts"
 import {NavElement, NavTitle, NavShape} from "../utils/style/Navbars"
-import {TbWorld} from "react-icons/tb"
+import {TbFloatNone, TbWorld} from "react-icons/tb"
 
 const Notes = () => {
   const linkStyle = {
     textDecoration: "none",
     color: "black",
+    textUnderline: "none",
   };
   const [posts, setNotes] = useState([]);
 
@@ -46,7 +47,7 @@ const Notes = () => {
       <UlElement id="seeAll">
         {
       posts.map((post) => (
-      <LiElement key={post._id} id={post._id}><Link to={`/see-one/${post._id}`}>{post.name}</Link></LiElement>
+      <LiElement  key={post._id} id={post._id}><Link style={linkStyle} to={`/see-one/${post._id}`}>{post.name}</Link></LiElement>
     )
     )}
       </UlElement>
