@@ -77,26 +77,26 @@ exports.displayOne = (req, res, next) => {
 };
 
 exports.modify = (req, res, next) => {
-  const postObject = req.file;
-  /* ? {
+  const postObject = req.file
+    ? {
         ...JSON.parse(req.body.post),
         imageUrl: `${req.protocol}://${req.get("host")}/../../assets/images/${
           req.file.filename
         }`,
       }
-    : { ...req.body };*/
+    : { ...req.body };
 
   delete postObject._userId;
   Post.findOne({ _id: req.params.id })
     .then((post) => {
       if (post.userId != req.auth.userId) {
         res.status(401).json({ message: "Not authorized" });
-      } else if (post.userId == req.auth.userId || user == AdminUser) {
+      } else {
         Post.updateOne(
           { _id: req.params.id },
           { ...postObject, _id: req.params.id }
         )
-          .then(() => res.status(200).json({ message: "Objet modifié!" }))
+          .then(() => res.status(200).json({ message: "Post modifié!" }))
           .catch((error) => res.status(401).json({ error }));
       }
     })

@@ -1,9 +1,87 @@
-import React from 'react'
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import {AiOutlineCheck} from 'react-icons/ai';
+import React, { useState, useEffect } from "react";
+import {MainImageModify, FormStyle, InputStyle, Textarea, ValidateStyle} from "../utils/style/Create&Modify"
+import {NavElement, NavTitle, NavShape} from "../utils/style/Navbars"
+import {TbWorld} from "react-icons/tb"
 
 const Modify = () => {
-  return (
-    <div>Modify</div>
-  )
-}
+  const linkStyle = {
+    textDecoration: "none",
+    color: "black",
+  };
 
-export default Modify
+  /*// handle on change according to input name and setState
+  const handleChange = (e) => {
+    setNote({ ...note, [e.target.name]: e.target.value });
+  };*/
+  const params = useParams();
+  const navigate = useNavigate();
+  
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  
+  const [post, setPost] = useState([]);
+  useEffect(() => {
+    axios.get(`http://localhost:4000/api/posts/${params.id}`).then((res) => {
+      setPost(res.data);
+      console.log(res.data);
+    });
+  }, []);
+
+  const onSubmit = (data) => {
+    data.userId = "6321ac5680823ebb6aaf3812";
+    axios
+      .put(`http://localhost:4000/api/posts/${params.id}`, data)
+      .then((res) => {
+        navigate("/my-posts");
+      })
+      .catch((err) => {
+        console.error(err.response.data);
+        alert(err.message + " - Erreur lors de la modification de la note");
+      });
+  };
+
+  return (
+    <>
+      <MainImageModify>
+    <NavShape>
+      <NavTitle>Modifier une Publication</NavTitle>
+      <Link style={linkStyle} to="/my-posts"><NavElement>Voir les publications</NavElement></Link>
+      <Link style={linkStyle} to="/"><NavElement>Se déconnecter</NavElement></Link>
+      <Link style={linkStyle} to="/"><NavElement>Groupomania<br/><TbWorld/></NavElement></Link>
+    </NavShape>
+      <FormStyle onSubmit={handleSubmit(onSubmit)}>
+        <InputStyle
+          type="text"
+          name="titre"
+          placeholder={post.name}
+         // value={note.title}
+          //onChange={handleChange}
+          {...register("name", { required: true })}
+        />
+        <Textarea
+        placeholder={post.description}
+         // value={note.content}
+         // onChange={handleChange}
+          rows="8"
+          {...register("description", { required: true })}
+        />
+        <InputStyle type="text" name="imageUrl" placeholder='imageUrl' {...register('imageUrl', { required: true })} />
+        <ValidateStyle type="submit" placeholder='valider'>
+              <AiOutlineCheck/>
+            </ValidateStyle>
+        </FormStyle>
+      </MainImageModify>
+    </>
+  );
+};
+
+export default Modify;
