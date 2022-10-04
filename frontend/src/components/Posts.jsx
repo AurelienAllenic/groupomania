@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, Navigate } from "react-router-dom";
 import {MainImagePosts, LiElement, UlElement} from "../utils/style/Posts"
-import {NavElement, NavTitle, NavShape} from "../utils/style/Navbars"
+import {NavElement, NavTitle, NavShape, NavElementLogout, NavElementDelete} from "../utils/style/Navbars"
 import {TbFloatNone, TbWorld} from "react-icons/tb"
 import { useNavigate } from "react-router-dom";
+import {SuperContainer} from "../utils/style/Login&Signup"
 
 const Notes = () => {
   const navigate = useNavigate();
@@ -35,17 +36,15 @@ const Notes = () => {
   }, []);
 
   return (
-    <>
-    <MainImagePosts>
+    <><MainImagePosts>
+    
+    
     <NavShape>
       <NavTitle>Publications</NavTitle>
       <Link style={linkStyle} to="/create-post"><NavElement>Créer une publication</NavElement></Link>
-      <NavElement onClick={logout}>Se déconnecter</NavElement>
-      <Link style={linkStyle} to="/"><NavElement>Groupomania<br/><TbWorld/></NavElement></Link>
+      <NavElementLogout onClick={logout}>Se déconnecter</NavElementLogout>
+      <Link style={linkStyle} to="/"><NavElementDelete>Groupomania<br/><TbWorld/></NavElementDelete></Link>
     </NavShape>
-    <Link style={linkStyle} to="/create-post">
-        Créer un post
-    </Link>
       <UlElement id="seeAll">
         {
       posts.map((post) => (

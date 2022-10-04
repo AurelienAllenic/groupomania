@@ -10,8 +10,8 @@ export const MainImageLogin = styled.div`
   height: 100vh;
   width: 100%;
   @media (max-width: 414px) {
-    height: 136.5vh;
-    width: 136.5%;
+    height: 126.5vh;
+    width: 126.5%;
   }
   @media (max-width: 375px) {
     height: 138.5vh;
@@ -25,7 +25,7 @@ export const RedirectSignup = styled.p`
   font-size: 30px;
   color: ${colors.primary};
   @media (max-width: 414px) {
-    bottom: -35%;
+    bottom: -28%;
     left: 5%;
   }
   @media (max-width: 375px) {
@@ -39,6 +39,14 @@ export const MainImageSignup = styled.div`
   background: url(${illustrationSign}) no-repeat center/cover;
   height: 100vh;
   width: 100%;
+  @media (max-width: 414px) {
+    height: 126.5vh;
+    width: 126.5%;
+  }
+  @media (max-width: 375px) {
+    height: 138.5vh;
+    width: 138.5%;
+  }
 `;
 // Generic styles for both
 
@@ -59,7 +67,7 @@ export const Groupomania = styled.h1`
     left: -20%;
   }
   @media (max-width: 414px) {
-    left: -40%;
+    left: -50%;
   }
   @media (max-width: 375px) {
     left: -49%;
