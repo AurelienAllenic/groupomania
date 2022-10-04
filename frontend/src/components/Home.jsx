@@ -18,7 +18,7 @@ const Home = () => {
       localStorage.token = res.data.token;
       // On "enregistre" le token dans la conf. de Axios
       axios.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
-      // On "navigate" (redirige) vers '/my-notes'
+      // On "navigate" (redirige) vers '/my-posts'
       navigate('/my-posts');
     }).catch(err => {
       alert(err.message + ' - Paire email / mot de passe incorrecte');

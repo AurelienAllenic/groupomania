@@ -22,9 +22,13 @@ exports.login = (req, res, next) => {
           } else {
             res.status(200).json({
               userId: user._id,
-              token: jwt.sign({ userId: user._id }, process.env.SECRET_TOKEN, {
-                expiresIn: "24h",
-              }),
+              token: jwt.sign(
+                { userId: user._id, admin: user.admin },
+                process.env.SECRET_TOKEN,
+                {
+                  expiresIn: "24h",
+                }
+              ),
             });
           }
         })

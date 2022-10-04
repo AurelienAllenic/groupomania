@@ -29,6 +29,7 @@ const InputsStyles = styled.a`
 `;
 
 function Signup() {
+  
   const linkStyle = {
     textDecoration: "none",
     color: "#fd230d",
@@ -37,12 +38,19 @@ function Signup() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = data => {axios.post('http://localhost:4000/api/auth/signup', data)
     .then(res => {
+      axios.post('http://localhost:4000/api/auth/login', data)
+    .then(res => {
       // On enregistre le token dans le localStorage
       localStorage.token = res.data.token;
       // On "enregistre" le token dans la conf. de Axios
       axios.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
-      // On "navigate" (redirige) vers '/my-notes'
+      // On "navigate" (redirige) vers '/my-posts'
       navigate('/my-posts');
+    }).catch(err => {
+      alert(err.message + ' - Paire email / mot de passe incorrecte');
+    })
+
+      // On "navigate" (redirige) vers '/my-posts'
     }).catch(err => {
       alert(err.message + ' - Problème lors de la création du compte');
     })

@@ -5,21 +5,8 @@ const fs = require("fs");
 const AdminUser = require("../admin/admin");
 
 exports.create = (req, res, next) => {
-  delete req.body.id;
-  const post = new Post({
-    ...req.body,
-  });
-  post
-    .save()
-    .then(() =>
-      res.status(201).json({ message: `Post ${post.name} enregistré !`, post })
-    )
-    .catch((error) => res.status(400).json({ error }));
-};
-/*
-exports.create = (req, res, next) => {
   console.log(req.body);
-  const postObject = JSON.parse(req.body.post);
+  const postObject = req.body;
   console.log(req.auth);
   delete postObject._id;
   const post = new Post({
@@ -41,7 +28,7 @@ exports.create = (req, res, next) => {
     .catch((error) => {
       res.status(400).json({ error });
     });
-};*/
+};
 
 exports.delete = (req, res, next) => {
   Post.findOne({ _id: req.params.id })
@@ -79,7 +66,7 @@ exports.displayOne = (req, res, next) => {
 exports.modify = (req, res, next) => {
   const postObject = req.file
     ? {
-        ...JSON.parse(req.body.post),
+        ...req.body,
         imageUrl: `${req.protocol}://${req.get("host")}/../../assets/images/${
           req.file.filename
         }`,

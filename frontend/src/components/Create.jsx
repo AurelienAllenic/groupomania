@@ -8,6 +8,10 @@ import {NavElement, NavTitle, NavShape} from "../utils/style/Navbars"
 import {TbWorld} from "react-icons/tb"
 
 const Edit = () => {
+  const logout = () => {
+    localStorage.clear()
+    navigate("/")
+  }
   const linkStyle = {
     textDecoration: "none",
     color: "black",
@@ -20,8 +24,12 @@ const Edit = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   
   const onSubmit = data => {
-    data.userId = "6321ac5680823ebb6aaf3812";
-    axios.post('http://localhost:4000/api/posts', data)
+    console.log(data)
+    const formData = new FormData();
+    formData.append("image", data.imageUrl[0] )
+    formData.append("name", data.name )
+    formData.append("description", data.description )
+    axios.post('http://localhost:4000/api/posts', formData)
       .then(res => {
         navigate('/my-posts')
       }).catch(err => {
@@ -35,13 +43,13 @@ const Edit = () => {
     <NavShape>
       <NavTitle>Créer une Publication</NavTitle>
       <Link style={linkStyle} to="/my-posts"><NavElement>Voir les publications</NavElement></Link>
-      <Link style={linkStyle} to="/"><NavElement>Se déconnecter</NavElement></Link>
+      <NavElement onClick={logout}>Se déconnecter</NavElement>
       <Link style={linkStyle} to="/"><NavElement>Groupomania<br/><TbWorld/></NavElement></Link>
     </NavShape>
           <FormStyle onSubmit={handleSubmit(onSubmit)}>
             <InputStyle type="text" name="name" placeholder='Titre' {...register('name', { required: true })} />
             <Textarea placeholder='Description' rows="8" {...register('description', { required: true })} />
-            <InputStyle type="text" name="imageUrl" placeholder='imageUrl' {...register('imageUrl', { required: true })} />
+            <InputStyle type="file" name="imageUrl" placeholder='image' {...register('imageUrl', { required: true })} />
             <ValidateStyle type="submit" placeholder='valider'>
               <AiOutlineCheck/>
             </ValidateStyle>

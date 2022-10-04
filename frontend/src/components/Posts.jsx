@@ -4,9 +4,16 @@ import { Link, Navigate } from "react-router-dom";
 import {MainImagePosts, LiElement, UlElement} from "../utils/style/Posts"
 import {NavElement, NavTitle, NavShape} from "../utils/style/Navbars"
 import {TbFloatNone, TbWorld} from "react-icons/tb"
+import { useNavigate } from "react-router-dom";
 
 const Notes = () => {
-  const linkStyle = {
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.clear()
+    navigate("/")
+  }
+ 
+    const linkStyle = {
     textDecoration: "none",
     color: "black",
     textUnderline: "none",
@@ -27,18 +34,13 @@ const Notes = () => {
       });
   }, []);
 
-  /*const logout = () => {
-    localStorage.clear();
-    Navigate('/')
-  }*/
-
   return (
     <>
     <MainImagePosts>
     <NavShape>
       <NavTitle>Publications</NavTitle>
       <Link style={linkStyle} to="/create-post"><NavElement>Créer une publication</NavElement></Link>
-      <Link style={linkStyle} to="/"><NavElement>Se déconnecter</NavElement></Link>
+      <NavElement onClick={logout}>Se déconnecter</NavElement>
       <Link style={linkStyle} to="/"><NavElement>Groupomania<br/><TbWorld/></NavElement></Link>
     </NavShape>
     <Link style={linkStyle} to="/create-post">

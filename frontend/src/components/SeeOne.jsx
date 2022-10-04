@@ -8,6 +8,10 @@ import {BsHandThumbsUp} from "react-icons/bs"
 import {BsHandThumbsDown} from "react-icons/bs"
 
 const SeeOne = () => {
+  const logout = () => {
+    localStorage.clear()
+    navigate("/")
+  }
   const linkStyle = {
     textDecoration: "none",
     color: "black",
@@ -41,7 +45,7 @@ const SeeOne = () => {
     <NavShape>
       <NavTitle>Voir une Publication</NavTitle>
       <Link style={linkStyle} to="/my-posts"><NavElement>Voir les publications</NavElement></Link>
-      <Link style={linkStyle} to="/"><NavElement>Se déconnecter</NavElement></Link>
+     <NavElement onClick={logout}>Se déconnecter</NavElement>
       <Link style={linkStyle} to="/"><NavElement>Groupomania<br/><TbWorld/></NavElement></Link>
     </NavShape>
       <PostCard>
