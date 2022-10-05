@@ -20,8 +20,6 @@ export const NavShape = styled.nav`
   @media (max-width: 768px) {
     height: 18vh;
     width: 100%;
-    display: flex;
-    flex-direction: row;
   }
   @media (max-width: 414px) {
     height: 15vh;
@@ -43,7 +41,7 @@ export const NavTitle = styled.li`
   font-weight: 600;
   @media (max-width: 820px) {
     font-size: 40px;
-    left: 40%;
+    left: 38%;
     top: -35%;
   }
   @media (max-width: 768px) {
@@ -69,15 +67,15 @@ export const NavElement = styled.li`
   @media (max-width: 820px) {
     font-size: 25px;
     top: 0%;
-    left: -80%;
+    left: -0%;
   }
   @media (max-width: 768px) {
-    left: -100%;
+    left: -30%;
   }
   @media (max-width: 414px) {
     font-size: 15px;
     top: -50%;
-    left: -120%;
+    left: -30%;
     margin: 5px;
   }
 `;
@@ -96,45 +94,18 @@ export const NavElementLogout = styled.li`
   @media (max-width: 820px) {
     font-size: 25px;
     top: 0%;
-    left: 20%;
+    left: 10%;
   }
   @media (max-width: 768px) {
-    left: 18%;
+    left: 14%;
   }
   @media (max-width: 414px) {
     font-size: 15px;
     top: -50%;
-    left: 20%;
-    margin: 5px;
-  }
-`;
-
-export const NavElementDelete = styled.li`
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  list-style: none;
-  padding-top: 100px;
-  font-size: 25px;
-  cursor: pointer;
-  &:hover {
-    color: ${colors.primary};
-  }
-  @media (max-width: 820px) {
-    font-size: 25px;
-    top: 0%;
-    left: -175%;
-  }
-  @media (max-width: 768px) {
-    left: -200%;
-  }
-  @media (max-width: 414px) {
-    font-size: 15px;
-    top: -50%;
-    left: -165%;
+    left: 7%;
     margin: 5px;
   }
   @media (max-width: 375px) {
-    left: -142%;
+    left: 0%;
   }
 `;

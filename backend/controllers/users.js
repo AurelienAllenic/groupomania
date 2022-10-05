@@ -3,6 +3,7 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const express = require("express");
 const router = express.Router();
+const AdminUser = require("../admin/admin");
 
 exports.login = (req, res, next) => {
   User.findOne({ email: req.body.email }).then((user) => {
@@ -54,4 +55,16 @@ exports.signup = (req, res, next) => {
         .catch((error) => res.status(400).json({ error }));
     })
     .catch((error) => res.status(500).json({ error }));
+};
+
+exports.delete = (req, res, next) => {
+  User.findByIdAndRemove(req.params.id)
+    .exec()
+    .then((doc) => {
+      if (!doc) {
+        return res.status(404).end();
+      }
+      return res.status(204).end();
+    })
+    .catch((err) => next(err));
 };

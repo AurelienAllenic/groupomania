@@ -43,7 +43,6 @@ const Notes = () => {
       <NavTitle>Publications</NavTitle>
       <Link style={linkStyle} to="/create-post"><NavElement>Créer une publication</NavElement></Link>
       <NavElementLogout onClick={logout}>Se déconnecter</NavElementLogout>
-      <Link style={linkStyle} to="/"><NavElementDelete>Groupomania<br/><TbWorld/></NavElementDelete></Link>
     </NavShape>
       <UlElement id="seeAll">
         {

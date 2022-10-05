@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import {AiOutlineCheck} from 'react-icons/ai';
 import React, { useState, useEffect } from "react";
 import {MainImageModify, FormStyle, InputStyle, Textarea, ValidateStyle} from "../utils/style/Create&Modify"
-import {NavElement, NavTitle, NavShape} from "../utils/style/Navbars"
+import {NavElement, NavTitle, NavShape, NavElementLogout} from "../utils/style/Navbars"
 import {TbWorld} from "react-icons/tb"
 
 const Modify = () => {
@@ -60,10 +60,9 @@ const Modify = () => {
     <>
       <MainImageModify>
     <NavShape>
-      <NavTitle>Modifier une Publication</NavTitle>
+      <NavTitle>Modifier</NavTitle>
       <Link style={linkStyle} to="/my-posts"><NavElement>Voir les publications</NavElement></Link>
-      <NavElement onClick={logout}>Se déconnecter</NavElement>
-      <Link style={linkStyle} to="/"><NavElement>Groupomania<br/><TbWorld/></NavElement></Link>
+      <NavElementLogout onClick={logout}>Se déconnecter</NavElementLogout>
     </NavShape>
       <FormStyle onSubmit={handleSubmit(onSubmit)}>
         <InputStyle

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import {MainImageSeeOne, PostCard, PostName, PostDescription, PostImage, Buttons, ModifyButton, DeleteButton, LikeAndDislike, Like , Dislike, ImageContainer} from "../utils/style/SeeOne"
-import {NavElement, NavTitle, NavShape} from "../utils/style/Navbars"
+import {NavElement, NavTitle, NavShape, NavElementLogout} from "../utils/style/Navbars"
 import {TbWorld} from "react-icons/tb"
 import {BsHandThumbsUp} from "react-icons/bs"
 import {BsHandThumbsDown} from "react-icons/bs"
@@ -43,10 +43,9 @@ const SeeOne = () => {
     <>
     <MainImageSeeOne>
     <NavShape>
-      <NavTitle>Voir une Publication</NavTitle>
+      <NavTitle>Voir</NavTitle>
       <Link style={linkStyle} to="/my-posts"><NavElement>Voir les publications</NavElement></Link>
-     <NavElement onClick={logout}>Se déconnecter</NavElement>
-      <Link style={linkStyle} to="/"><NavElement>Groupomania<br/><TbWorld/></NavElement></Link>
+     <NavElementLogout onClick={logout}>Se déconnecter</NavElementLogout>
     </NavShape>
       <PostCard>
         <PostName id={post._id}>{post.name}</PostName>

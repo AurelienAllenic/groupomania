@@ -8,12 +8,24 @@ export const MainImageCreate = styled.div`
   background: url(${img}) no-repeat center/cover;
   height: 100vh;
   width: 100%;
+  @media (max-width: 414px) {
+    height: 103vh;
+    width: 103%;
+  }
+  @media (max-width: 375px) {
+    height: 106vh;
+    width: 106%;
+  }
 `;
 // Only for Modify page
 export const MainImageModify = styled.div`
   background: url(${img2}) no-repeat center/cover;
   height: 100vh;
   width: 100%;
+  @media (max-width: 414px) {
+    height: 103vh;
+    width: 103%;
+  }
 `;
 // Works for both
 export const FormStyle = styled.form`
@@ -24,6 +36,12 @@ export const FormStyle = styled.form`
   flex-direction: column;
   width: 50%;
   height: 50%;
+  @media (max-width: 820px) {
+    left: 25%;
+  }
+  @media (max-width: 414px) {
+    left: 20%;
+  }
 `;
 export const InputStyle = styled.input`
   margin: 20px;
@@ -41,6 +59,15 @@ export const InputStyle = styled.input`
     color: black;
     opacity: 0.5;
   }
+  @media (max-width: 820px) {
+    width: 40%;
+    left: 25%;
+  }
+  @media (max-width: 414px) {
+    width: 60%;
+    left: 15%;
+    font-size: 15px;
+  }
 `;
 export const Textarea = styled.textarea`
   font-size: 25px;
@@ -56,6 +83,14 @@ export const Textarea = styled.textarea`
     color: black;
     opacity: 0.5;
   }
+  @media (max-width: 820px) {
+    width: 100%;
+  }
+  @media (max-width: 414px) {
+    width: 100%;
+    left: 20%;
+    font-size: 15px;
+  }
 `;
 
 export const ValidateStyle = styled.button`
@@ -70,5 +105,13 @@ export const ValidateStyle = styled.button`
   cursor: pointer;
   &:hover {
     opacity: 0.9;
+  }
+  @media (max-width: 820px) {
+    width: 20%;
+    left: 45%;
+  }
+  @media (max-width: 414px) {
+    width: 20%;
+    left: 50%;
   }
 `;
