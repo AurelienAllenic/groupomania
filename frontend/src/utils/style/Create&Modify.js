@@ -131,6 +131,9 @@ export const LabelStyle = styled.label`
   color: #607274;
   cursor: pointer;
   text-align: center;
+  &:hover {
+    opacity: 0.9;
+  }
   @media (max-width: 820px) {
     width: 40%;
     left: 25%;
