@@ -3,7 +3,7 @@ import axios from "axios"
 import { useForm } from "react-hook-form";
 import {AiOutlineCheck} from 'react-icons/ai'
 import React, { useRef } from 'react'
-import {MainImageCreate, FormStyle, InputStyle, Textarea, ValidateStyle} from "../utils/style/Create&Modify"
+import {MainImageCreate, FormStyle, InputStyle, Textarea, ValidateStyle, LabelStyle, InputNone} from "../utils/style/Create&Modify"
 import {NavElement, NavTitle, NavShape, NavElementLogout} from "../utils/style/Navbars"
 import {TbWorld} from "react-icons/tb"
 
@@ -18,7 +18,7 @@ const Edit = () => {
       alert(err.message + ' - Erreur lors de la suppression du compte')
     });
   }*/
-  
+
   const logout = () => {
     localStorage.clear()
     navigate("/")
@@ -59,7 +59,8 @@ const Edit = () => {
           <FormStyle onSubmit={handleSubmit(onSubmit)}>
             <InputStyle type="text" name="name" placeholder='Titre' {...register('name', { required: true })} />
             <Textarea placeholder='Description' rows="8" {...register('description', { required: true })} />
-            <InputStyle type="file" name="imageUrl" placeholder='image' {...register('imageUrl', { required: true })} />
+            <LabelStyle for="imageUrl">Image</LabelStyle>
+            <InputNone id="imageUrl" type="file" name="imageUrl" placeholder='image' {...register('imageUrl', { required: true })} />
             <ValidateStyle type="submit" placeholder='valider'>
               <AiOutlineCheck/>
             </ValidateStyle>

@@ -4,7 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import {AiOutlineCheck} from 'react-icons/ai';
 import React, { useState, useEffect } from "react";
-import {MainImageModify, FormStyle, InputStyle, Textarea, ValidateStyle} from "../utils/style/Create&Modify"
+import {MainImageModify, FormStyle, InputStyle, Textarea, ValidateStyle, LabelStyle, InputNone} from "../utils/style/Create&Modify"
 import {NavElement, NavTitle, NavShape, NavElementLogout} from "../utils/style/Navbars"
 import {TbWorld} from "react-icons/tb"
 
@@ -80,7 +80,8 @@ const Modify = () => {
           rows="8"
           {...register("description", { required: true })}
         />
-        <InputStyle type="file" name="imageUrl" placeholder='image' {...register('imageUrl', { required: true })} />
+        <LabelStyle for="imageUrl">Image</LabelStyle>
+        <InputNone id="imageUrl" type="file" name="imageUrl" placeholder='image' {...register('imageUrl', { required: true })} />
         <ValidateStyle type="submit" placeholder='valider'>
               <AiOutlineCheck/>
             </ValidateStyle>

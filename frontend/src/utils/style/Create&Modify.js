@@ -115,3 +115,33 @@ export const ValidateStyle = styled.button`
     left: 50%;
   }
 `;
+
+export const LabelStyle = styled.label`
+  margin: 20px;
+  width: 20%;
+  font-size: 25px;
+  position: relative;
+  left: 33%;
+  background: linear-gradient(${colors.primary}, ${colors.secondary});
+  border-radius: 10px 10px 10px 10px;
+  border: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 1rem;
+  color: #607274;
+  cursor: pointer;
+  text-align: center;
+  @media (max-width: 820px) {
+    width: 40%;
+    left: 25%;
+  }
+  @media (max-width: 414px) {
+    width: 60%;
+    left: 15%;
+    font-size: 15px;
+  }
+`;
+
+export const InputNone = styled.input`
+  display: none;
+`;
