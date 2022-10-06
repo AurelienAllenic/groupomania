@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const express = require("express");
 const router = express.Router();
 const AdminUser = require("../admin/admin");
+const UserModel = require("../models/user");
 
 exports.login = (req, res, next) => {
   User.findOne({ email: req.body.email }).then((user) => {
@@ -67,4 +68,16 @@ exports.delete = (req, res, next) => {
       return res.status(204).end();
     })
     .catch((err) => next(err));
+};
+// READ ONE
+exports.getOneUser = (req, res, next) => {
+  UserModel.findOne({ _id: req.params.id })
+    .then((user) => res.status(200).json(user))
+    .catch((error) => res.status(404).json({ error }));
+};
+// READ ALL
+exports.getAllUsers = (req, res, next) => {
+  UserModel.find()
+    .then((users) => res.status(200).json(users))
+    .catch((error) => res.status(400).json({ error }));
 };
