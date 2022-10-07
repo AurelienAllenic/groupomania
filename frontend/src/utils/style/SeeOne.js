@@ -155,14 +155,16 @@ export const Like = styled.div`
   font-size: 35px;
   color: white;
   display: inline-block;
+  cursor: pointer;
   &:hover {
     color: ${colors.secondary};
   }
 `;
 export const Dislike = styled.div`
   position: relative;
-  left: 130%;
+  left: 50%;
   font-size: 35px;
+  cursor: pointer;
   color: white;
   display: inline-block;
   &:hover {

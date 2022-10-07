@@ -35,10 +35,24 @@ const Notes = () => {
       });
   }, []);
 
+  const [user, setUser] = useState([]);
+
+   useEffect(() => {
+    axios
+      .get("http://localhost:4000/api/auth/")
+      .then((res) => 
+      {
+        setUser(res.data);
+       console.log(res.data)
+   
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <><MainImagePosts>
-    
-    
     <NavShape>
       <NavTitle>Publications</NavTitle>
       <Link style={linkStyle} to="/create-post"><NavElement>Créer une publication</NavElement></Link>

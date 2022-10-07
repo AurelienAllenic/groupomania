@@ -9,6 +9,26 @@ import {NavElement, NavTitle, NavShape, NavElementLogout} from "../utils/style/N
 import {TbWorld} from "react-icons/tb"
 
 const Modify = () => {
+  /*let { userId } = useParams();
+
+  const [user, setUser] = useState([]);
+  useEffect(() => {
+    axios.get(`http://localhost:4000/api/auth/${params.userId}`).then((res) => {
+      setUser(res.data);
+      console.log(res.data);
+    });
+  }, []);
+
+  const deleteAccount = (userId) => {
+    axios
+    .delete(`http://localhost:4000/api/posts/${userId[0]}`)
+    .then((res) => {
+      navigate('/my-posts')
+    })
+    .catch((err) => {
+      alert(err.message + " - Erreur lors de la modification de la note");
+    });
+  }*/
   const logout = () => {
     localStorage.clear()
     navigate("/")
@@ -80,7 +100,7 @@ const Modify = () => {
           rows="8"
           {...register("description", { required: true })}
         />
-        <LabelStyle for="imageUrl">Image</LabelStyle>
+        <LabelStyle htmlFor="imageUrl">Image</LabelStyle>
         <InputNone id="imageUrl" type="file" name="imageUrl" placeholder='image' {...register('imageUrl', { required: true })} />
         <ValidateStyle type="submit" placeholder='valider'>
               <AiOutlineCheck/>

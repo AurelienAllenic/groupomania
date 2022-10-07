@@ -3,9 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import {MainImageSeeOne, PostCard, PostName, PostDescription, PostImage, Buttons, ModifyButton, DeleteButton, LikeAndDislike, Like , Dislike, ImageContainer} from "../utils/style/SeeOne"
 import {NavElement, NavTitle, NavShape, NavElementLogout} from "../utils/style/Navbars"
-import {TbWorld} from "react-icons/tb"
-import {BsHandThumbsUp} from "react-icons/bs"
-import {BsHandThumbsDown} from "react-icons/bs"
+import Likes from "./LikesDislikes"
 
 const SeeOne = () => {
   const logout = () => {
@@ -60,7 +58,7 @@ const SeeOne = () => {
         </ModifyButton>
         <DeleteButton onClick={() => deletePost(post._id)}>Supprimer</DeleteButton>
         </Buttons>
-        <LikeAndDislike><Like><BsHandThumbsUp /></Like><Dislike><BsHandThumbsDown /></Dislike></LikeAndDislike>
+        <Likes/>
       </MainImageSeeOne>
     </>
   );
