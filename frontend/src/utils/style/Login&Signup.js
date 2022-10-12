@@ -58,10 +58,11 @@ export const SuperContainer = styled.div`
   width: 50%;
 `;
 export const Groupomania = styled.h1`
-  font-size: 75px;
+  font-size: 65px;
   color: ${colors.primary};
   position: relative;
   left: 10%;
+  padding-top: 100px;
   width: 100%;
   @media (max-width: 820px) {
     left: -20%;
@@ -76,9 +77,8 @@ export const Groupomania = styled.h1`
 export const MainTitle = styled.h2`
   color: ${colors.primary};
   text-align: center;
-  font-size: 55px;
+  font-size: 35px;
   position: relative;
-  padding-bottom: 50px;
 `;
 export const InsistOnBlue = styled.span`
   color: ${colors.secondary};
@@ -92,7 +92,7 @@ export const InputStyle = styled.input`
   background-color: transparent;
   padding: 2rem;
   border-bottom-color: #eee;
-  font-size: 45px;
+  font-size: 30px;
   color: ${colors.primary};
   &:hover {
     border-bottom: 4px solid;
@@ -114,8 +114,8 @@ export const ValidateStyle = styled.input`
   border: none;
   background-color: transparent;
   color: #eee;
-  font-size: 40px;
-  padding: 4rem;
+  font-size: 35px;
+  padding: 2rem;
   cursor: pointer;
   border-bottom-color: #eee;
   &:hover {
@@ -126,6 +126,7 @@ export const ValidateStyle = styled.input`
 export const LoginCard = styled.div`
   position: absolute;
   right: 30%;
+  top: 100%;
   @media (max-width: 414px) {
     right: -20%;
   }

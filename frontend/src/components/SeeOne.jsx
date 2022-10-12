@@ -2,10 +2,19 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import {MainImageSeeOne, PostCard, PostName, PostDescription, PostImage, Buttons, ModifyButton, DeleteButton, LikeAndDislike, Like , Dislike, ImageContainer} from "../utils/style/SeeOne"
-import {NavElement, NavTitle, NavShape, NavElementLogout} from "../utils/style/Navbars"
+import {NavElement, NavTitleSee, NavShape, NavElementLogout, NavElementDelete} from "../utils/style/Navbars"
 import Likes from "./LikesDislikes"
 
 const SeeOne = () => {
+  const deleteAccount = () => {
+    axios.delete(`http://localhost:4000/api/auth/delete`)
+    .then(res => {
+     localStorage.clear()
+      navigate('/')
+    }).catch(err => {
+      alert(err.message + ' - Erreur lors de la suppression du compte')
+    });
+  }
   const logout = () => {
     localStorage.clear()
     navigate("/")
@@ -41,9 +50,10 @@ const SeeOne = () => {
     <>
     <MainImageSeeOne>
     <NavShape>
-      <NavTitle>Voir</NavTitle>
+      <NavTitleSee>Voir</NavTitleSee>
       <Link style={linkStyle} to="/my-posts"><NavElement>Voir les publications</NavElement></Link>
      <NavElementLogout onClick={logout}>Se déconnecter</NavElementLogout>
+     <NavElementDelete onClick={deleteAccount}>Supprimer son compte</NavElementDelete>
     </NavShape>
       <PostCard>
         <PostName id={post._id}>{post.name}</PostName>
@@ -58,7 +68,7 @@ const SeeOne = () => {
         </ModifyButton>
         <DeleteButton onClick={() => deletePost(post._id)}>Supprimer</DeleteButton>
         </Buttons>
-        <Likes/>
+        <Likes post={post}/>
       </MainImageSeeOne>
     </>
   );

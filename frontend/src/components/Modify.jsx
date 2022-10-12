@@ -5,10 +5,19 @@ import { useParams } from "react-router-dom";
 import {AiOutlineCheck} from 'react-icons/ai';
 import React, { useState, useEffect } from "react";
 import {MainImageModify, FormStyle, InputStyle, Textarea, ValidateStyle, LabelStyle, InputNone} from "../utils/style/Create&Modify"
-import {NavElement, NavTitle, NavShape, NavElementLogout} from "../utils/style/Navbars"
+import {NavSeePostsModify, NavTitle, NavShape, NavElementLogoutModify, NavElementDeleteModify} from "../utils/style/Navbars"
 import {TbWorld} from "react-icons/tb"
 
 const Modify = () => {
+  const deleteAccount = () => {
+    axios.delete(`http://localhost:4000/api/auth/delete`)
+    .then(res => {
+     localStorage.clear()
+      navigate('/')
+    }).catch(err => {
+      alert(err.message + ' - Erreur lors de la suppression du compte')
+    });
+  }
   /*let { userId } = useParams();
 
   const [user, setUser] = useState([]);
@@ -81,8 +90,9 @@ const Modify = () => {
       <MainImageModify>
     <NavShape>
       <NavTitle>Modifier</NavTitle>
-      <Link style={linkStyle} to="/my-posts"><NavElement>Voir les publications</NavElement></Link>
-      <NavElementLogout onClick={logout}>Se déconnecter</NavElementLogout>
+      <Link style={linkStyle} to="/my-posts"><NavSeePostsModify>Voir les publications</NavSeePostsModify></Link>
+      <NavElementLogoutModify onClick={logout}>Se déconnecter</NavElementLogoutModify>
+      <NavElementDeleteModify onClick={deleteAccount}>Supprimer son compte</NavElementDeleteModify>
     </NavShape>
       <FormStyle onSubmit={handleSubmit(onSubmit)}>
         <InputStyle

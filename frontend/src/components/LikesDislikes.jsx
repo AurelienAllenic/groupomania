@@ -1,16 +1,29 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {BsHandThumbsUp} from "react-icons/bs"
 import {BsHandThumbsDown} from "react-icons/bs"
 import {LikeAndDislike, Like , Dislike} from "../utils/style/SeeOne"
+import axios from 'axios'
+import { useParams, useNavigate, Link } from "react-router-dom";
 
-const LikesDislikes = () => {
-  const [like, setLike] = useState(0)
-  const [dislike, setDislike] = useState(0)
+const LikesDislikes = (props) => {
+  const params = useParams();
+  const [like, setLike] = useState(props.post.likes)
+  const [dislike, setDislike] = useState(props.post.dislikes)
 
   const [likeActive, setLikeActive] = useState(false)
   const [dislikeActive, setDislikeActive] = useState(false)
+  console.log(props.post)
+function LikeBack() {
+  const numberLikes = {likes : 1};
+  axios.post(`http://localhost:4000/api/posts/${params.id}/like`, numberLikes).then((res) => {
+    //setLike(res.data);
+    //setDislike(res.data);
+    console.log("test"+ res.data);
+  });
+}
 
   function likef(){
+    LikeBack();
     if(likeActive){
       setLikeActive(false)
       setLike(like-1)
@@ -25,6 +38,7 @@ const LikesDislikes = () => {
   }
 
   function dislikef(){
+    LikeBack();
     if(dislikeActive){
       setDislikeActive(false)
       setDislike(dislike-1)
@@ -42,7 +56,7 @@ const LikesDislikes = () => {
     <>
     <LikeAndDislike>
       <Like onClick={likef}><BsHandThumbsUp />{like}</Like>
-      <Dislike onClick={dislikef}><BsHandThumbsDown /> {dislike}</Dislike>
+      <Dislike onClick={dislikef}><BsHandThumbsDown />{dislike}</Dislike>
     </LikeAndDislike>
     </>
   )

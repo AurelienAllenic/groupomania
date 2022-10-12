@@ -7,12 +7,12 @@ export const MainImagePosts = styled.div`
   height: 100vh;
   width: 100%;
   @media (max-width: 820px) {
-    height: 100vh;
-    width: 100%;
+    height: 101vh;
+    width: 101%;
   }
   @media (max-width: 414px) {
-    height: 103vh;
-    width: 103%;
+    height: 110vh;
+    width: 110%;
   }
   @media (max-width: 375px) {
     height: 106vh;
@@ -23,7 +23,7 @@ export const UlElement = styled.ul`
   position: absolute;
   left: 20%;
   display: grid;
-  grid-template-columns: repeat(6, 5fr);
+  grid-template-columns: repeat(5, 5fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
   @media (max-width: 820px) {

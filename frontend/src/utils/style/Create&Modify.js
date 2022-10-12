@@ -8,9 +8,13 @@ export const MainImageCreate = styled.div`
   background: url(${img}) no-repeat center/cover;
   height: 100vh;
   width: 100%;
+  @media (max-width: 820px) {
+    height: 100.4vh;
+    width: 100.4%;
+  }
   @media (max-width: 414px) {
-    height: 103vh;
-    width: 103%;
+    height: 109vh;
+    width: 109%;
   }
   @media (max-width: 375px) {
     height: 106vh;
@@ -26,18 +30,23 @@ export const MainImageModify = styled.div`
     height: 103vh;
     width: 103%;
   }
+  @media (max-width: 375px) {
+    height: 106.5vh;
+    width: 106.5%;
+  }
 `;
 // Works for both
 export const FormStyle = styled.form`
   position: absolute;
   left: 30%;
-  top: 25%;
+  top: 10%;
   display: flex;
   flex-direction: column;
   width: 50%;
-  height: 50%;
+  height: 80%;
   @media (max-width: 820px) {
-    left: 25%;
+    left: 20%;
+    top: 20%;
   }
   @media (max-width: 414px) {
     left: 20%;
@@ -46,7 +55,7 @@ export const FormStyle = styled.form`
 export const InputStyle = styled.input`
   margin: 20px;
   width: 20%;
-  font-size: 30px;
+  font-size: 25px;
   position: relative;
   left: 33%;
   background: linear-gradient(${colors.primary}, ${colors.secondary});
@@ -95,7 +104,7 @@ export const Textarea = styled.textarea`
 
 export const ValidateStyle = styled.button`
   margin-top: 40px;
-  width: 5%;
+  width: 10%;
   height: 12%;
   position: relative;
   left: 43%;
@@ -109,6 +118,7 @@ export const ValidateStyle = styled.button`
   @media (max-width: 820px) {
     width: 20%;
     left: 45%;
+    height: 5%;
   }
   @media (max-width: 414px) {
     width: 20%;

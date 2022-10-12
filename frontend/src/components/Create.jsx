@@ -4,20 +4,20 @@ import { useForm } from "react-hook-form";
 import {AiOutlineCheck} from 'react-icons/ai'
 import React, { useRef } from 'react'
 import {MainImageCreate, FormStyle, InputStyle, Textarea, ValidateStyle, LabelStyle, InputNone} from "../utils/style/Create&Modify"
-import {NavElement, NavTitle, NavShape, NavElementLogout} from "../utils/style/Navbars"
+import {NavSeePosts, NavTitle, NavShape, NavElementLogoutCreate, NavElementDeleteCreate} from "../utils/style/Navbars"
 import {TbWorld} from "react-icons/tb"
 
 const Edit = () => {
 
-  /*const deleteAccount = () => {
-    axios.delete(`http://localhost:4000/api/auth/delete/:id`)
+  const deleteAccount = () => {
+    axios.delete(`http://localhost:4000/api/auth/delete`)
     .then(res => {
-      localStorage.clear()
+     localStorage.clear()
       navigate('/')
     }).catch(err => {
       alert(err.message + ' - Erreur lors de la suppression du compte')
     });
-  }*/
+  }
 
   const logout = () => {
     localStorage.clear()
@@ -53,8 +53,9 @@ const Edit = () => {
     <MainImageCreate>
     <NavShape>
       <NavTitle>Créer</NavTitle>
-      <Link style={linkStyle} to="/my-posts"><NavElement>Voir les publications</NavElement></Link>
-      <NavElementLogout onClick={logout}>Se déconnecter</NavElementLogout>
+      <Link style={linkStyle} to="/my-posts"><NavSeePosts>Voir les publications</NavSeePosts></Link>
+     <NavElementLogoutCreate onClick={logout}>Se déconnecter</NavElementLogoutCreate>
+      <NavElementDeleteCreate onClick={deleteAccount}>Supprimer son compte</NavElementDeleteCreate>
     </NavShape>
           <FormStyle onSubmit={handleSubmit(onSubmit)}>
             <InputStyle type="text" name="name" placeholder='Titre' {...register('name', { required: true })} />

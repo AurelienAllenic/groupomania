@@ -110,7 +110,7 @@ exports.like = (req, res, next) => {
   if (req.body.like == 1) {
     Post.updateOne(
       { _id: req.params.id },
-      { $push: { usersLiked: req.body.userId }, $inc: { likes: +1 } }
+      { $push: { usersLiked: req.auth.userId }, $inc: { likes: +1 } }
     )
       .then(() => res.status(200).json({ message: "Post liké !" }))
       .catch((error) => res.status(400).json({ error }));
@@ -119,10 +119,10 @@ exports.like = (req, res, next) => {
   if (req.body.like == 0) {
     Post.findOne({ _id: req.params.id })
       .then((post) => {
-        if (post.usersLiked.includes(req.body.userId)) {
+        if (post.usersLiked.includes(req.auth.userId)) {
           Post.updateOne(
             { _id: req.params.id },
-            { $pull: { usersLiked: req.body.userId }, $inc: { likes: -1 } }
+            { $pull: { usersLiked: req.auth.userId }, $inc: { likes: -1 } }
           )
             .then(() =>
               res
@@ -131,11 +131,11 @@ exports.like = (req, res, next) => {
             )
             .catch((error) => res.status(400).json({ error }));
         }
-        if (post.usersDisliked.includes(req.body.userId)) {
+        if (post.usersDisliked.includes(req.auth.userId)) {
           Post.updateOne(
             { _id: req.params.id },
             {
-              $pull: { usersDisliked: req.body.userId },
+              $pull: { usersDisliked: req.auth.userId },
               $inc: { dislikes: -1 },
             }
           )
@@ -153,7 +153,7 @@ exports.like = (req, res, next) => {
   if (req.body.like == -1) {
     Post.updateOne(
       { _id: req.params.id },
-      { $push: { usersDisliked: req.body.userId }, $inc: { dislikes: +1 } }
+      { $push: { usersDisliked: req.auth.userId }, $inc: { dislikes: +1 } }
     )
       .then(() => res.status(200).json({ message: "Post disliké !" }))
       .catch((error) => res.status(400).json({ error }));
