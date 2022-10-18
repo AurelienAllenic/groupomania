@@ -14,12 +14,15 @@ const LikesDislikes = (props) => {
   const [dislikeActive, setDislikeActive] = useState(false)
   console.log(props.post)
 function LikeBack() {
-  const numberLikes = {likes : 1};
+  const numberLikes = {like : 1};
   axios.post(`http://localhost:4000/api/posts/${params.id}/like`, numberLikes).then((res) => {
     //setLike(res.data);
     //setDislike(res.data);
     console.log("test"+ res.data);
-  });
+  })
+  .catch((error) => {
+    console.log(error)
+  })
 }
 
   function likef(){
