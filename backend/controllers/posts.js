@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Post = require("../models/post");
 const fs = require("fs");
-const AdminUser = require("../admin/admin");
 
 exports.create = (req, res, next) => {
   console.log(req.body);
@@ -31,11 +30,23 @@ exports.create = (req, res, next) => {
 };
 
 exports.delete = (req, res, next) => {
+  console.log(req.auth.admin, "admin");
   Post.findOne({ _id: req.params.id })
     .then((post) => {
-      if (post.userId != req.auth.userId) {
+      // Si userId et admin non
+      if (post.userId != req.auth.userId && req.auth.admin == false) {
         res.status(401).json({ message: "Not authorized" });
-      } else if (post.userId == req.auth.userId || user == AdminUser) {
+        // Si userId
+      } else if (post.userId == req.auth.userId) {
+        const filename = post.imageUrl.split("assets/images/")[1];
+        fs.unlink(`assets/images/${filename}`, () => {
+          Post.deleteOne({ _id: req.params.id })
+            .then(() => res.status(200).json({ message: "Post supprimé" }))
+            .catch((error) => res.status(400).json({ error }));
+          console.log("Post supprimé");
+        });
+        //si Admin
+      } else if (req.auth.admin) {
         const filename = post.imageUrl.split("assets/images/")[1];
         fs.unlink(`assets/images/${filename}`, () => {
           Post.deleteOne({ _id: req.params.id })
@@ -112,7 +123,9 @@ exports.like = (req, res, next) => {
       { _id: req.params.id },
       { $push: { usersLiked: req.auth.userId }, $inc: { likes: +1 } }
     )
-      .then(() => res.status(200).json({ message: "Post liké !" }))
+      .then(() =>
+        res.status(200).json({ message: "Post liké !", likeActive: true })
+      )
       .catch((error) => res.status(400).json({ error }));
   }
 
@@ -125,9 +138,10 @@ exports.like = (req, res, next) => {
             { $pull: { usersLiked: req.auth.userId }, $inc: { likes: -1 } }
           )
             .then(() =>
-              res
-                .status(200)
-                .json({ message: "Ce Post ne vous intéresse plus !" })
+              res.status(200).json({
+                message: "Ce Post ne vous intéresse plus !",
+                likeActive: false,
+              })
             )
             .catch((error) => res.status(400).json({ error }));
         }

@@ -42,7 +42,7 @@ const SeeOne = () => {
       navigate('/my-posts')
     })
     .catch((err) => {
-      alert(err.message + " - Erreur lors de la modification de la note");
+      alert(err.message + " - Erreur lors de la suppression de la note");
     });
   }
 

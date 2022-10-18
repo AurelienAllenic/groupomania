@@ -3,7 +3,6 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const express = require("express");
 const router = express.Router();
-const AdminUser = require("../admin/admin");
 const UserModel = require("../models/user");
 
 exports.login = (req, res, next) => {
