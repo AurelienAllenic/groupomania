@@ -33,20 +33,9 @@ exports.delete = (req, res, next) => {
   console.log(req.auth.admin, "admin");
   Post.findOne({ _id: req.params.id })
     .then((post) => {
-      // Si userId et admin non
       if (post.userId != req.auth.userId && req.auth.admin == false) {
         res.status(401).json({ message: "Not authorized" });
-        // Si userId
-      } else if (post.userId == req.auth.userId) {
-        const filename = post.imageUrl.split("assets/images/")[1];
-        fs.unlink(`assets/images/${filename}`, () => {
-          Post.deleteOne({ _id: req.params.id })
-            .then(() => res.status(200).json({ message: "Post supprimé" }))
-            .catch((error) => res.status(400).json({ error }));
-          console.log("Post supprimé");
-        });
-        //si Admin
-      } else if (req.auth.admin) {
+      } else {
         const filename = post.imageUrl.split("assets/images/")[1];
         fs.unlink(`assets/images/${filename}`, () => {
           Post.deleteOne({ _id: req.params.id })
@@ -87,7 +76,7 @@ exports.modify = (req, res, next) => {
   delete postObject._userId;
   Post.findOne({ _id: req.params.id })
     .then((post) => {
-      if (post.userId != req.auth.userId) {
+      if (post.userId != req.auth.userId && req.auth.admin == false) {
         res.status(401).json({ message: "Not authorized" });
       } else {
         Post.updateOne(
