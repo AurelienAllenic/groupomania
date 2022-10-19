@@ -127,6 +127,9 @@ export const NavElement = styled.li`
   @media (max-width: 768px) {
     left: -30%;
   }
+  @media (max-width: 488px) {
+    font-size: 22px;
+  }
   @media (max-width: 414px) {
     font-size: 15px;
     top: -20%;
@@ -251,6 +254,12 @@ export const NavElementLogout = styled.li`
   }
   @media (max-width: 768px) {
     left: 0%;
+  }
+  @media (max-width: 756px) {
+    left: -5%;
+  }
+  @media (max-width: 488px) {
+    font-size: 22px;
   }
   @media (max-width: 414px) {
     font-size: 15px;
@@ -384,8 +393,14 @@ export const NavElementDelete = styled.li`
     top: 5%;
     left: 9%;
   }
-  @media (max-width: 768px) {
-    left: 3%;
+  @media (max-width: 820px) {
+    left: 2%;
+  }
+  @media (max-width: 756px) {
+    left: -3%;
+  }
+  @media (max-width: 488px) {
+    font-size: 22px;
   }
   @media (max-width: 414px) {
     font-size: 15px;

@@ -11,8 +11,8 @@ export const MainImageSeeOne = styled.div`
     width: 109%;
   }
   @media (max-width: 375px) {
-    height: 100vh;
-    width: 100%;
+    height: 105vh;
+    width: 105%;
   }
 `;
 export const PostCard = styled.div`
@@ -57,6 +57,9 @@ export const PostName = styled.h1`
   @media (max-width: 414px) {
     left: 29%;
   }
+  @media (max-width: 400px) {
+    left: 0%;
+  }
   @media (max-width: 375px) {
     font-size: 30px;
     left: 25%;
@@ -87,9 +90,20 @@ export const PostImage = styled.img`
   max-height: 500px;
   border-radius: 10px 10px 10px 10px;
   margin-top: 20px;
+  @media (max-width: 632px) {
+    left: -15%;
+  }
+  @media (max-width: 556px) {
+    min-width: 400px;
+    max-height: 400px;
+  }
+  @media (max-width: 466px) {
+    left: -20%;
+    min-width: 300px;
+    max-height: 300px;
+  }
   @media (max-width: 414px) {
     left: 5%;
-    min-width: 300px;
   }
   @media (max-width: 375px) {
     min-width: 200px;
@@ -101,6 +115,12 @@ export const Buttons = styled.div`
   position: absolute;
   left: 70%;
   bottom: 40%;
+  @media (max-width: 1286px) {
+    bottom: 14%;
+  }
+  @media (max-width: 1046px) {
+    left: 45%;
+  }
   @media (max-width: 820px) {
     left: 32%;
     bottom: 12%;
@@ -108,6 +128,9 @@ export const Buttons = styled.div`
   @media (max-width: 768px) {
     left: 32%;
     bottom: 9%;
+  }
+  @media (max-width: 466px) {
+    left: 18%;
   }
   @media (max-width: 414px) {
     left: 20%;
@@ -147,6 +170,13 @@ export const LikeAndDislike = styled.div`
   position: absolute;
   left: 76%;
   bottom: 30%;
+  @media (max-width: 1286px) {
+    bottom: 5%;
+    left: 80%;
+  }
+  @media (max-width: 1046px) {
+    left: 57%;
+  }
   @media (max-width: 820px) {
     left: 45%;
     bottom: 5%;
@@ -154,6 +184,9 @@ export const LikeAndDislike = styled.div`
   @media (max-width: 768px) {
     left: 38%;
     bottom: 3%;
+  }
+  @media (max-width: 466px) {
+    left: 30%;
   }
   @media (max-width: 414px) {
     left: 30%;
