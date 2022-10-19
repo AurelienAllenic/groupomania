@@ -8,18 +8,6 @@ export const MainImageCreate = styled.div`
   background: url(${img}) no-repeat center/cover;
   height: 100vh;
   width: 100%;
-  @media (max-width: 820px) {
-    height: 100.4vh;
-    width: 100.4%;
-  }
-  @media (max-width: 414px) {
-    height: 109vh;
-    width: 109%;
-  }
-  @media (max-width: 375px) {
-    height: 106vh;
-    width: 106%;
-  }
 `;
 // Only for Modify page
 export const MainImageModify = styled.div`
@@ -91,6 +79,10 @@ export const Textarea = styled.textarea`
   &::placeholder {
     color: black;
     opacity: 0.5;
+  }
+  @media (max-width: 863px) {
+    position: relative;
+    left: 10%;
   }
   @media (max-width: 820px) {
     width: 100%;

@@ -6,18 +6,6 @@ export const MainImagePosts = styled.div`
   background: url(${img}) no-repeat center/cover;
   height: 100vh;
   width: 100%;
-  @media (max-width: 820px) {
-    height: 101vh;
-    width: 101%;
-  }
-  @media (max-width: 414px) {
-    height: 110vh;
-    width: 110%;
-  }
-  @media (max-width: 375px) {
-    height: 106vh;
-    width: 106%;
-  }
 `;
 export const UlElement = styled.ul`
   position: absolute;

@@ -23,11 +23,10 @@ export const NavShape = styled.nav`
   }
   @media (max-width: 414px) {
     height: 15vh;
-    width: 107.5%;
   }
   @media (max-width: 375px) {
     height: 15vh;
-    width: 105%;
+    width: 100%;
   }
 `;
 
@@ -195,6 +194,10 @@ export const NavSeePosts = styled.li`
   @media (max-width: 768px) {
     left: -30%;
   }
+  @media (max-width: 512px) {
+    top: 0%;
+    font-size: 20px;
+  }
   @media (max-width: 414px) {
     font-size: 15px;
     top: -20%;
@@ -331,6 +334,10 @@ export const NavElementLogoutCreate = styled.li`
   }
   @media (max-width: 768px) {
     left: -5%;
+  }
+  @media (max-width: 512px) {
+    top: 0%;
+    font-size: 20px;
   }
   @media (max-width: 414px) {
     font-size: 15px;
@@ -476,6 +483,10 @@ export const NavElementDeleteCreate = styled.li`
   }
   @media (max-width: 768px) {
     left: -3%;
+  }
+  @media (max-width: 512px) {
+    top: 0%;
+    font-size: 20px;
   }
   @media (max-width: 414px) {
     font-size: 15px;
