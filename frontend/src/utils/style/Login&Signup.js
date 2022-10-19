@@ -19,6 +19,10 @@ export const RedirectSignup = styled.p`
   @media (max-width: 820px) {
     bottom: 2%;
   }
+  @media (max-width: 630px) {
+    bottom: 0%;
+    font-size: 25px;
+  }
   @media (max-width: 414px) {
     bottom: 0%;
     left: 5%;
@@ -35,14 +39,6 @@ export const MainImageSignup = styled.div`
   background: url(${illustrationSign}) no-repeat center/cover;
   height: 100vh;
   width: 100%;
-  @media (max-width: 414px) {
-    height: 126.5vh;
-    width: 126.5%;
-  }
-  @media (max-width: 375px) {
-    height: 138.5vh;
-    width: 138.5%;
-  }
 `;
 // Generic styles for both
 
