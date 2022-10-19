@@ -9,6 +9,10 @@ export const MainImageLogin = styled.div`
   background: url(${illustration}) no-repeat center/cover;
   height: 100vh;
   width: 100%;
+  @media (max-width: 820px) {
+    height: 115vh;
+    width: 115%;
+  }
   @media (max-width: 414px) {
     height: 126.5vh;
     width: 126.5%;
@@ -24,13 +28,16 @@ export const RedirectSignup = styled.p`
   left: 1%;
   font-size: 30px;
   color: ${colors.primary};
+  @media (max-width: 820px) {
+    bottom: 2%;
+  }
   @media (max-width: 414px) {
-    bottom: -28%;
+    bottom: -20%;
     left: 5%;
   }
   @media (max-width: 375px) {
     left: 5%;
-    bottom: -40%;
+    bottom: -30%;
     font-size: 25px;
   }
 `;
@@ -56,6 +63,10 @@ export const SuperContainer = styled.div`
   top: 0%;
   transform: translateX(-50%);
   width: 50%;
+  @media (max-width: 820px) {
+    width: 90%;
+    left: 60%;
+  }
 `;
 export const Groupomania = styled.h1`
   font-size: 65px;
@@ -65,13 +76,16 @@ export const Groupomania = styled.h1`
   padding-top: 100px;
   width: 100%;
   @media (max-width: 820px) {
-    left: -20%;
+    left: 10%;
+  }
+  @media (max-width: 554px) {
+    left: -5%;
   }
   @media (max-width: 414px) {
-    left: -50%;
+    left: -5%;
   }
   @media (max-width: 375px) {
-    left: -49%;
+    left: -7%;
   }
 `;
 export const MainTitle = styled.h2`
@@ -104,6 +118,10 @@ export const InputStyle = styled.input`
   &::focus {
     outline: none;
   }
+  @media (max-width: 820px) {
+    font-size: 25px;
+    width: 70%;
+  }
   @media (max-width: 414px) {
     font-size: 35px;
   }
@@ -122,11 +140,17 @@ export const ValidateStyle = styled.input`
     border-bottom-color: #eee;
     border-bottom: 3px solid;
   }
+  @media (max-width: 820px) {
+    width: 80%;
+  }
 `;
 export const LoginCard = styled.div`
   position: absolute;
   right: 30%;
   top: 100%;
+  @media (max-width: 820px) {
+    right: 30%;
+  }
   @media (max-width: 414px) {
     right: -20%;
   }

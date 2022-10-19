@@ -11,8 +11,8 @@ export const MainImageSeeOne = styled.div`
     width: 109%;
   }
   @media (max-width: 375px) {
-    height: 106vh;
-    width: 106%;
+    height: 100vh;
+    width: 100%;
   }
 `;
 export const PostCard = styled.div`
@@ -48,39 +48,45 @@ export const PostName = styled.h1`
   font-size: 40px;
   @media (max-width: 820px) {
     font-size: 35px;
-    left: 40%;
+    left: 25%;
+  }
+  @media (max-width: 768px) {
+    left: 20%;
+    top: 5%;
   }
   @media (max-width: 414px) {
     left: 29%;
   }
   @media (max-width: 375px) {
     font-size: 30px;
-    left: 18%;
+    left: 25%;
   }
 `;
 export const PostDescription = styled.p`
   position: relative;
-  left: 10%;
   color: white;
   font-size: 30px;
   font-weight: 600;
   @media (max-width: 820px) {
-    font-size: 30px;
+    font-size: 19px;
+    left: -17%;
+  }
+  @media (max-width: 768px) {
+    left: -15%;
+    font-size: 18px;
+  }
+  @media (max-width: 375px) {
     left: 0%;
   }
 `;
 export const PostImage = styled.img`
   position: relative;
-  left: 11%;
   width: 50%;
   max-width: 500px;
   min-width: 500px;
   max-height: 500px;
   border-radius: 10px 10px 10px 10px;
   margin-top: 20px;
-  @media (max-width: 820px) {
-    left: 0%;
-  }
   @media (max-width: 414px) {
     left: 5%;
     min-width: 300px;
@@ -88,15 +94,16 @@ export const PostImage = styled.img`
   @media (max-width: 375px) {
     min-width: 200px;
     margin-top: 0px;
+    left: 0%;
   }
 `;
 export const Buttons = styled.div`
   position: absolute;
   left: 70%;
-  bottom: 54%;
+  bottom: 40%;
   @media (max-width: 820px) {
     left: 32%;
-    bottom: 20%;
+    bottom: 12%;
   }
   @media (max-width: 768px) {
     left: 32%;
@@ -107,8 +114,8 @@ export const Buttons = styled.div`
     bottom: 5%;
   }
   @media (max-width: 375px) {
-    bottom: 5%;
-    left: 15%;
+    bottom: 10%;
+    left: 10%;
   }
 `;
 export const ModifyButton = styled.button`
@@ -138,11 +145,11 @@ export const DeleteButton = styled.button`
 
 export const LikeAndDislike = styled.div`
   position: absolute;
-  left: 73%;
-  bottom: 45%;
+  left: 76%;
+  bottom: 30%;
   @media (max-width: 820px) {
-    left: 37%;
-    bottom: 13%;
+    left: 45%;
+    bottom: 5%;
   }
   @media (max-width: 768px) {
     left: 38%;
@@ -153,7 +160,8 @@ export const LikeAndDislike = styled.div`
     bottom: -5%;
   }
   @media (max-width: 375px) {
-    bottom: -6%;
+    bottom: 0%;
+    left: 27%;
   }
 `;
 
@@ -166,6 +174,9 @@ export const Like = styled.div`
   cursor: pointer;
   &:hover {
     color: ${colors.secondary};
+  }
+  @media (max-width: 768px) {
+    left: 100%;
   }
 `;
 export const Dislike = styled.div`

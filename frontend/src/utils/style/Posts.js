@@ -26,10 +26,36 @@ export const UlElement = styled.ul`
   grid-template-columns: repeat(5, 5fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
+  @media (max-width: 1475px) {
+    grid-template-columns: repeat(4, 8fr);
+    left: 25%;
+  }
+  @media (max-width: 1271px) {
+    grid-template-columns: repeat(3, 8fr);
+    left: 30%;
+  }
+  @media (max-width: 1035px) {
+    grid-template-columns: repeat(2, 8fr);
+    left: 40%;
+  }
   @media (max-width: 820px) {
     grid-template-columns: repeat(3, 8fr);
     left: 10%;
     top: 20%;
+  }
+  @media (max-width: 628px) {
+    left: 3%;
+  }
+  @media (max-width: 590px) {
+    left: 0%;
+  }
+  @media (max-width: 544px) {
+    left: 10%;
+    grid-template-columns: repeat(2, 6fr);
+  }
+  @media (max-width: 444px) {
+    grid-template-columns: repeat(1, 6fr);
+    left: 20%;
   }
   @media (max-width: 414px) {
     grid-template-columns: repeat(2, 6fr);

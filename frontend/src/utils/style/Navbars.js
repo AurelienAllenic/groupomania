@@ -19,16 +19,15 @@ export const NavShape = styled.nav`
   }
   @media (max-width: 768px) {
     height: 18vh;
-    width: 100%;
+    width: 99%;
   }
   @media (max-width: 414px) {
     height: 15vh;
-    width: 110%;
-    display: flex;
-    flex-direction: row;
+    width: 107.5%;
   }
   @media (max-width: 375px) {
-    width: 106%;
+    height: 15vh;
+    width: 105%;
   }
 `;
 
@@ -45,10 +44,10 @@ export const NavTitle = styled.li`
   @media (max-width: 820px) {
     font-size: 40px;
     left: 38%;
+    top: -15%;
   }
   @media (max-width: 768px) {
     left: 35%;
-    margin-top: 1rem;
   }
   @media (max-width: 414px) {
     font-size: 22px;
@@ -148,11 +147,20 @@ export const NavCreatePosts = styled.li`
   }
   @media (max-width: 820px) {
     font-size: 25px;
-    top: 13%;
+    top: -10%;
     left: -85%;
   }
   @media (max-width: 768px) {
     left: -100%;
+  }
+  @media (max-width: 584px) {
+    left: -150%;
+  }
+  @media (max-width: 544px) {
+    font-size: 20px;
+  }
+  @media (max-width: 480px) {
+    left: -200%;
   }
   @media (max-width: 414px) {
     font-size: 15px;
@@ -208,12 +216,12 @@ export const NavSeePostsModify = styled.li`
     left: -58%;
   }
   @media (max-width: 768px) {
-    left: -30%;
+    left: -60%;
   }
   @media (max-width: 414px) {
     font-size: 15px;
-    top: -50%;
-    left: -30%;
+    top: -20%;
+    left: -50%;
     margin: 5px;
   }
   @media (max-width: 375px) {
@@ -267,11 +275,23 @@ export const NavElementLogoutPosts = styled.li`
   }
   @media (max-width: 820px) {
     font-size: 25px;
-    top: 13%;
+    top: -10%;
     left: -11%;
   }
   @media (max-width: 768px) {
     left: -12%;
+  }
+  @media (max-width: 584px) {
+    left: -20%;
+  }
+  @media (max-width: 544px) {
+    font-size: 20px;
+  }
+  @media (max-width: 480px) {
+    left: -30%;
+  }
+  @media (max-width: 444px) {
+    left: -35%;
   }
   @media (max-width: 414px) {
     font-size: 15px;
@@ -330,12 +350,12 @@ export const NavElementLogoutModify = styled.li`
     left: -8%;
   }
   @media (max-width: 768px) {
-    left: 14%;
+    left: -10%;
   }
   @media (max-width: 414px) {
     font-size: 15px;
-    top: -50%;
-    left: 7%;
+    top: -15%;
+    left: -5%;
     margin: 5px;
   }
   @media (max-width: 375px) {
@@ -392,11 +412,23 @@ export const NavElementDeletePosts = styled.li`
   }
   @media (max-width: 820px) {
     font-size: 25px;
-    top: 13%;
-    left: 0%;
+    top: -10%;
+    left: -5%;
   }
   @media (max-width: 768px) {
     left: -3%;
+  }
+  @media (max-width: 584px) {
+    left: -10%;
+  }
+  @media (max-width: 544px) {
+    font-size: 20px;
+  }
+  @media (max-width: 480px) {
+    left: -20%;
+  }
+  @media (max-width: 444px) {
+    left: -30%;
   }
   @media (max-width: 414px) {
     font-size: 15px;
@@ -405,8 +437,8 @@ export const NavElementDeletePosts = styled.li`
     margin: 5px;
   }
   @media (max-width: 375px) {
-    left: 0%;
-    top: -20%;
+    left: -5%;
+    top: -40%;
   }
 `;
 export const NavElementDeleteCreate = styled.li`
@@ -428,7 +460,7 @@ export const NavElementDeleteCreate = styled.li`
     left: 3%;
   }
   @media (max-width: 768px) {
-    left: 1%;
+    left: -3%;
   }
   @media (max-width: 414px) {
     font-size: 15px;
@@ -459,16 +491,16 @@ export const NavElementDeleteModify = styled.li`
     left: 0%;
   }
   @media (max-width: 768px) {
-    left: 14%;
+    left: 0%;
   }
   @media (max-width: 414px) {
     font-size: 15px;
-    top: -50%;
-    left: 7%;
+    top: -15%;
+    left: -5%;
     margin: 5px;
   }
   @media (max-width: 375px) {
-    left: 0%;
+    left: -7%;
     top: -25%;
   }
 `;
