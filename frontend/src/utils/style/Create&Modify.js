@@ -14,14 +14,6 @@ export const MainImageModify = styled.div`
   background: url(${img2}) no-repeat center/cover;
   height: 100vh;
   width: 100%;
-  @media (max-width: 414px) {
-    height: 103vh;
-    width: 103%;
-  }
-  @media (max-width: 375px) {
-    height: 106.5vh;
-    width: 106.5%;
-  }
 `;
 // Works for both
 export const FormStyle = styled.form`

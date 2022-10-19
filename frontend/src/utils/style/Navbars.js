@@ -11,7 +11,7 @@ export const NavShape = styled.nav`
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   @media (max-width: 820px) {
-    height: 15vh;
+    height: 18vh;
     left: 0.3%;
     width: 100%;
     display: flex;
@@ -224,6 +224,14 @@ export const NavSeePostsModify = styled.li`
   @media (max-width: 768px) {
     left: -60%;
   }
+  @media (max-width: 574px) {
+    top: 0%;
+    font-size: 20px;
+    left: -80%;
+  }
+  @media (max-width: 462px) {
+    left: -110%;
+  }
   @media (max-width: 414px) {
     font-size: 15px;
     top: -20%;
@@ -367,6 +375,13 @@ export const NavElementLogoutModify = styled.li`
   }
   @media (max-width: 768px) {
     left: -10%;
+  }
+  @media (max-width: 574px) {
+    top: 0%;
+    font-size: 20px;
+  }
+  @media (max-width: 462px) {
+    left: -20%;
   }
   @media (max-width: 414px) {
     font-size: 15px;
@@ -518,6 +533,13 @@ export const NavElementDeleteModify = styled.li`
   }
   @media (max-width: 768px) {
     left: 0%;
+  }
+  @media (max-width: 574px) {
+    top: 0%;
+    font-size: 20px;
+  }
+  @media (max-width: 462px) {
+    left: -15%;
   }
   @media (max-width: 414px) {
     font-size: 15px;
