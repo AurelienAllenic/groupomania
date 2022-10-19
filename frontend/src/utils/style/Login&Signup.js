@@ -9,18 +9,6 @@ export const MainImageLogin = styled.div`
   background: url(${illustration}) no-repeat center/cover;
   height: 100vh;
   width: 100%;
-  @media (max-width: 820px) {
-    height: 115vh;
-    width: 115%;
-  }
-  @media (max-width: 414px) {
-    height: 126.5vh;
-    width: 126.5%;
-  }
-  @media (max-width: 375px) {
-    height: 138.5vh;
-    width: 138.5%;
-  }
 `;
 export const RedirectSignup = styled.p`
   position: absolute;
@@ -32,13 +20,14 @@ export const RedirectSignup = styled.p`
     bottom: 2%;
   }
   @media (max-width: 414px) {
-    bottom: -20%;
+    bottom: 0%;
     left: 5%;
+    width: 90%;
   }
   @media (max-width: 375px) {
     left: 5%;
-    bottom: -30%;
-    font-size: 25px;
+    bottom: 0%;
+    font-size: 23px;
   }
 `;
 // Specific styles for signup
@@ -65,7 +54,7 @@ export const SuperContainer = styled.div`
   width: 50%;
   @media (max-width: 820px) {
     width: 90%;
-    left: 60%;
+    left: 55%;
   }
 `;
 export const Groupomania = styled.h1`
@@ -76,13 +65,23 @@ export const Groupomania = styled.h1`
   padding-top: 100px;
   width: 100%;
   @media (max-width: 820px) {
-    left: 10%;
+    left: 15%;
+    width: 80%;
   }
   @media (max-width: 554px) {
     left: -5%;
   }
+  @media (max-width: 440px) {
+    font-size: 55px;
+    left: 0%;
+  }
+  @media (max-width: 393px) {
+    font-size: 45px;
+    left: 0%;
+  }
   @media (max-width: 414px) {
-    left: -5%;
+    left: 0%;
+    padding-top: 50px;
   }
   @media (max-width: 375px) {
     left: -7%;
@@ -93,6 +92,9 @@ export const MainTitle = styled.h2`
   text-align: center;
   font-size: 35px;
   position: relative;
+  @media (max-width: 375px) {
+    left: -10%;
+  }
 `;
 export const InsistOnBlue = styled.span`
   color: ${colors.secondary};
@@ -123,7 +125,14 @@ export const InputStyle = styled.input`
     width: 70%;
   }
   @media (max-width: 414px) {
-    font-size: 35px;
+    font-size: 27px;
+  }
+  @media (max-width: 397px) {
+    font-size: 25px;
+  }
+  @media (max-width: 375px) {
+    width: 70%;
+    font-size: 23px;
   }
 `;
 export const ValidateStyle = styled.input`
@@ -143,18 +152,30 @@ export const ValidateStyle = styled.input`
   @media (max-width: 820px) {
     width: 80%;
   }
+  @media (max-width: 414px) {
+    width: 60%;
+  }
+  @media (max-width: 397px) {
+    font-size: 25px;
+  }
+  @media (max-width: 375px) {
+    width: 100%;
+    font-size: 23px;
+  }
 `;
 export const LoginCard = styled.div`
   position: absolute;
   right: 30%;
   top: 100%;
   @media (max-width: 820px) {
-    right: 30%;
+    left: 17%;
+    top: 150%;
+  }
+  @media (max-width: 525px) {
+    top: 100%;
   }
   @media (max-width: 414px) {
-    right: -20%;
-  }
-  @media (max-width: 375px) {
-    right: -40%;
+    right: 20%;
+    top: 100%;
   }
 `;
