@@ -6,14 +6,6 @@ export const MainImageSeeOne = styled.div`
   background: url(${img}) no-repeat center/cover;
   height: 100vh;
   width: 100%;
-  @media (max-width: 414px) {
-    height: 109vh;
-    width: 109%;
-  }
-  @media (max-width: 375px) {
-    height: 105vh;
-    width: 105%;
-  }
 `;
 export const PostCard = styled.div`
   position: fixed;
@@ -55,9 +47,6 @@ export const PostName = styled.h1`
     top: 5%;
   }
   @media (max-width: 414px) {
-    left: 29%;
-  }
-  @media (max-width: 400px) {
     left: 0%;
   }
   @media (max-width: 375px) {
@@ -133,8 +122,8 @@ export const Buttons = styled.div`
     left: 18%;
   }
   @media (max-width: 414px) {
-    left: 20%;
-    bottom: 5%;
+    left: 15%;
+    bottom: 20%;
   }
   @media (max-width: 375px) {
     bottom: 10%;
@@ -190,7 +179,7 @@ export const LikeAndDislike = styled.div`
   }
   @media (max-width: 414px) {
     left: 30%;
-    bottom: -5%;
+    bottom: 10%;
   }
   @media (max-width: 375px) {
     bottom: 0%;
