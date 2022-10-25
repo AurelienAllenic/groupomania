@@ -107,60 +107,28 @@ exports.displayAll = (req, res, next) => {
 };
 
 exports.like = (req, res, next) => {
-  if (req.body.like == 1) {
-    Post.updateOne(
-      { _id: req.params.id },
-      { $push: { usersLiked: req.auth.userId }, $inc: { likes: +1 } }
-    )
-      .then(() =>
-        res.status(200).json({ message: "Post liké !", likeActive: true })
+  Post.findOne({ _id: req.params.id }).then((post) => {
+    if(post.usersLiked.includes(req.auth.userId)) {
+      Post.updateOne(
+        {_id: req.params.id},
+        {$pull : {usersLiked: req.auth.userId }, $inc: {likes: -1}}
+      ).then(() => 
+        res.status(200).json({message: "Ce post ne vous intéresse plus !", likeActive: false,})
+      ).catch((error) => res.status(400).json({error}));
+    } else {
+      Post.updateOne(
+        {_id: req.params.id},
+        {$push: {usersLiked: req.auth.userId}, $inc: {likes: +1} }
+      ).then(() => 
+      res.status(200).json({message: "post liké !", likeActive: true})
+      ).catch((error) => 
+      res.status(400).json({error})
       )
-      .catch((error) => res.status(400).json({ error }));
-  }
+    }
+  })
+}
 
-  if (req.body.like == 0) {
-    Post.findOne({ _id: req.params.id })
-      .then((post) => {
-        if (post.usersLiked.includes(req.auth.userId)) {
-          Post.updateOne(
-            { _id: req.params.id },
-            { $pull: { usersLiked: req.auth.userId }, $inc: { likes: -1 } }
-          )
-            .then(() =>
-              res.status(200).json({
-                message: "Ce Post ne vous intéresse plus !",
-                likeActive: false,
-              })
-            )
-            .catch((error) => res.status(400).json({ error }));
-        }
-        if (post.usersDisliked.includes(req.auth.userId)) {
-          Post.updateOne(
-            { _id: req.params.id },
-            {
-              $pull: { usersDisliked: req.auth.userId },
-              $inc: { dislikes: -1 },
-            }
-          )
-            .then(() =>
-              res
-                .status(200)
-                .json({ message: "Ce Post ne vous intéresse plus !" })
-            )
-            .catch((error) => res.status(400).json({ error }));
-        }
-      })
-      .catch((error) => res.status(400).json({ error }));
-  }
 
-  if (req.body.like == -1) {
-    Post.updateOne(
-      { _id: req.params.id },
-      { $push: { usersDisliked: req.auth.userId }, $inc: { dislikes: +1 } }
-    )
-      .then(() => res.status(200).json({ message: "Post disliké !" }))
-      .catch((error) => res.status(400).json({ error }));
-    console.log("Post disliké !");
-  }
-  console.log(req.body);
-};
+  
+ 
+

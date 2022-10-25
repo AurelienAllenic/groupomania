@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios"
-import {MainImageLogin, MainTitle, SuperContainer, LoginCard, Groupomania, InsistOnBlue, InputStyle, ValidateStyle, RedirectSignup} from "../utils/style/Login&Signup"
+import { MainImageLogin, MainTitle, SuperContainer, LoginCard, Groupomania, InsistOnBlue, InputStyle, ValidateStyle, RedirectSignup } from "../utils/style/Login&Signup"
 import { Link } from 'react-router-dom';
 
 const Home = () => {
@@ -10,12 +10,15 @@ const Home = () => {
     textDecoration: "none",
     color: "#fd230d",
   };
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = data => {axios.post('http://localhost:4000/api/auth/login', data)
+  const onSubmit = data => {
+    axios.post('http://localhost:4000/api/auth/login', data)
     .then(res => {
       // On enregistre le token dans le localStorage
       localStorage.token = res.data.token;
+      // Ajout du userId
+      localStorage.userId = res.data.userId;
       // On "enregistre" le token dans la conf. de Axios
       axios.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
       // On "navigate" (redirige) vers '/my-posts'
@@ -26,7 +29,7 @@ const Home = () => {
   }
   return (
     <>
-    <MainImageLogin></MainImageLogin>
+      <MainImageLogin></MainImageLogin>
       <SuperContainer>
         <Groupomania><InsistOnBlue>Groupo</InsistOnBlue>mania</Groupomania>
         <LoginCard>
@@ -38,7 +41,7 @@ const Home = () => {
           </form>
         </LoginCard>
       </SuperContainer>
-    <RedirectSignup>Pas encore inscrit ? Créez un compte <Link style={linkStyle} to="/signup">ici</Link></RedirectSignup>
+      <RedirectSignup>Pas encore inscrit ? Créez un compte <Link style={linkStyle} to="/signup">ici</Link></RedirectSignup>
     </>
   )
 }

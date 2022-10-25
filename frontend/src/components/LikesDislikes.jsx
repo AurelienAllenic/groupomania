@@ -1,50 +1,47 @@
-import React, {useState, useEffect} from 'react'
-import {BsHandThumbsUp} from "react-icons/bs"
-import {BsHandThumbsDown} from "react-icons/bs"
-import {LikeAndDislike, Like , Dislike} from "../utils/style/SeeOne"
+import React, { useState, useEffect } from 'react'
+import { BsHandThumbsUp } from "react-icons/bs"
+import { BsHandThumbsDown } from "react-icons/bs"
+import { LikeAndDislike, Like, Dislike } from "../utils/style/SeeOne"
 import axios from 'axios'
 import { useParams, useNavigate, Link } from "react-router-dom";
 
-const LikesDislikes = (props) => {
+const LikesDislikes = ({ post }) => {
   const params = useParams();
   const [like, setLike] = useState(0)
-  console.log("props", props);
-
-  useEffect(()=> {
-    setLike(props.post.likes)
-  }, [props])
-
   const [likeActive, setLikeActive] = useState(false)
 
-  console.log(props.post)
-function LikeBack() {
-  const numberLikes = {like : likeActive ? 0 : 1};
-  axios.post(`http://localhost:4000/api/posts/${params.id}/like`, numberLikes).then((res) => {
-    //setLike(res.data);
-    //setDislike(res.data);
-    console.log("test"+ res.data);
-  })
-  .catch((error) => {
-    console.log(error)
-  })
-}
+  useEffect(() => {
+    setLike(post.likes)
+    setLikeActive(
+      post && post.usersLiked && post.usersLiked.includes(localStorage.userId)
+    )
+  }, [post])
 
-  function likef(){
-    LikeBack();
-    if(likeActive){
-      setLikeActive(false)
-      setLike(like-1)
-    }else{
-      setLikeActive(true)
-      setLike(like+1)
-    }
+
+  function LikeBack() {
+    const numberLikes = { like: likeActive ? 0 : 1 };
+    axios.post(`http://localhost:4000/api/posts/${params.id}/like`, numberLikes).then((res) => {
+      //setLike(res.data);
+      //setDislike(res.data);
+      setLikeActive(res.data.likeActive)
+      console.log("test" + res.data);
+      if (likeActive) {
+        setLike(like - 1);
+      } else {
+        setLike(like + 1)
+      }
+    })
+      .catch((error) => {
+        console.log(error)
+      })
   }
+
 
   return (
     <>
-    <LikeAndDislike>
-      <Like onClick={likef}><BsHandThumbsUp />{like}</Like>
-    </LikeAndDislike>
+      <LikeAndDislike>
+        <Like onClick={LikeBack}><BsHandThumbsUp />{like}</Like>
+      </LikeAndDislike>
     </>
   )
 }
