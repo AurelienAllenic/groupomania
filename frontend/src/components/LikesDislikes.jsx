@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { BsHandThumbsUp } from "react-icons/bs"
-import { BsHandThumbsDown } from "react-icons/bs"
-import { LikeAndDislike, Like, Dislike } from "../utils/style/SeeOne"
+import { LikeAndDislike, Like } from "../utils/style/SeeOne"
 import axios from 'axios'
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const LikesDislikes = ({ post }) => {
   const params = useParams();
@@ -21,8 +20,6 @@ const LikesDislikes = ({ post }) => {
   function LikeBack() {
     const numberLikes = { like: likeActive ? 0 : 1 };
     axios.post(`http://localhost:4000/api/posts/${params.id}/like`, numberLikes).then((res) => {
-      //setLike(res.data);
-      //setDislike(res.data);
       setLikeActive(res.data.likeActive)
       console.log("test" + res.data);
       if (likeActive) {

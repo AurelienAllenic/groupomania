@@ -72,5 +72,12 @@ export const LiElement = styled.li`
     height: 30px;
     width: 150px;
     padding: 15px 0px 20px 0px;
+    font-size: 20px;
+  }
+  @media (max-width: 414px) {
+    font-size: 20px;
+  }
+  @media (max-width: 375px) {
+    font-size: 17px;
   }
 `;

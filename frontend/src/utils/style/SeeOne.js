@@ -154,7 +154,6 @@ export const DeleteButton = styled.button`
     opacity: 0.8;
   }
 `;
-
 export const LikeAndDislike = styled.div`
   position: absolute;
   left: 76%;
@@ -186,7 +185,6 @@ export const LikeAndDislike = styled.div`
     left: 27%;
   }
 `;
-
 export const Like = styled.div`
   position: relative;
   left: 0%;
@@ -199,17 +197,6 @@ export const Like = styled.div`
   }
   @media (max-width: 768px) {
     left: 100%;
-  }
-`;
-export const Dislike = styled.div`
-  position: relative;
-  left: 150%;
-  font-size: 40px;
-  cursor: pointer;
-  color: white;
-  display: inline-block;
-  &:hover {
-    color: ${colors.secondary};
   }
 `;
 export const ImageContainer = styled.div`

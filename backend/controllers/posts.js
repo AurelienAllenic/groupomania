@@ -94,7 +94,7 @@ exports.modify = (req, res, next) => {
 
 exports.displayAll = (req, res, next) => {
   console.log("Affichage de tous les posts");
-  Post.find()
+  Post.find().sort({createdAt: -1})
     .then((posts) => {
       console.log(posts[0]);
       res.status(200).json(posts);
@@ -126,9 +126,5 @@ exports.like = (req, res, next) => {
       )
     }
   })
-}
-
-
-  
- 
+} 
 

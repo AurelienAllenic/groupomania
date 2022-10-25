@@ -1,19 +1,19 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import {MainImageSeeOne, PostCard, PostName, PostDescription, PostImage, Buttons, ModifyButton, DeleteButton, LikeAndDislike, Like , Dislike, ImageContainer} from "../utils/style/SeeOne"
-import {NavElement, NavTitleSee, NavShape, NavElementLogout, NavElementDelete} from "../utils/style/Navbars"
+import { MainImageSeeOne, PostCard, PostName, PostDescription, PostImage, Buttons, ModifyButton, DeleteButton, LikeAndDislike, Like, Dislike, ImageContainer } from "../utils/style/SeeOne"
+import { NavElement, NavTitleSee, NavShape, NavElementLogout, NavElementDelete } from "../utils/style/Navbars"
 import Likes from "./LikesDislikes"
 
 const SeeOne = () => {
   const deleteAccount = () => {
     axios.delete(`http://localhost:4000/api/auth/delete`)
-    .then(res => {
-     localStorage.clear()
-      navigate('/')
-    }).catch(err => {
-      alert(err.message + ' - Erreur lors de la suppression du compte')
-    });
+      .then(res => {
+        localStorage.clear()
+        navigate('/')
+      }).catch(err => {
+        alert(err.message + ' - Erreur lors de la suppression du compte')
+      });
   }
   const logout = () => {
     localStorage.clear()
@@ -28,47 +28,55 @@ const SeeOne = () => {
   console.log(params)
   //const noteId = window.location.search.split("?id=").join("");
   const [post, setPost] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false)
+
   useEffect(() => {
     axios.get(`http://localhost:4000/api/posts/${params.id}`).then((res) => {
       setPost(res.data);
-      console.log(res.data);
+      console.log(res.data, "Ici le post");
     });
+    axios.get(`http://localhost:4000/api/auth/${localStorage.userId}`).then((res) => {
+      setIsAdmin(res.data.admin);
+      console.log(res.data, "deuxième res");
+    })
   }, []);
 
   const deletePost = (postId) => {
     axios
-    .delete(`http://localhost:4000/api/posts/${postId}`)
-    .then((res) => {
-      navigate('/my-posts')
-    })
-    .catch((err) => {
-      alert(err.message + " - Erreur lors de la suppression de la note");
-    });
+      .delete(`http://localhost:4000/api/posts/${postId}`)
+      .then((res) => {
+        navigate('/my-posts')
+      })
+      .catch((err) => {
+        alert(err.message + " - Erreur lors de la suppression de la note");
+      });
   }
 
   return (
     <>
-    <MainImageSeeOne>
-    <NavShape>
-      <NavTitleSee>Voir</NavTitleSee>
-      <Link style={linkStyle} to="/my-posts"><NavElement>Voir les publications</NavElement></Link>
-     <NavElementLogout onClick={logout}>Se déconnecter</NavElementLogout>
-     <NavElementDelete onClick={deleteAccount}>Supprimer son compte</NavElementDelete>
-    </NavShape>
-      <PostCard>
-        <PostName id={post._id}>{post.name}</PostName>
-        <PostDescription id={post._id}>{post.description}</PostDescription>
-        <ImageContainer>
-        <PostImage src={post.imageUrl} id={post._id} alt="post"></PostImage>
-        </ImageContainer>
+      <MainImageSeeOne>
+        <NavShape>
+          <NavTitleSee>Voir</NavTitleSee>
+          <Link style={linkStyle} to="/my-posts"><NavElement>Voir les publications</NavElement></Link>
+          <NavElementLogout onClick={logout}>Se déconnecter</NavElementLogout>
+          <NavElementDelete onClick={deleteAccount}>Supprimer son compte</NavElementDelete>
+        </NavShape>
+        <PostCard>
+          <PostName id={post._id}>{post.name}</PostName>
+          <PostDescription id={post._id}>{post.description}</PostDescription>
+          <ImageContainer>
+            <PostImage src={post.imageUrl} id={post._id} alt="post"></PostImage>
+          </ImageContainer>
         </PostCard>
-        <Buttons>
-        <ModifyButton>
-        <Link style={linkStyle} to={`/modify/${post._id}`}>Modifier</Link>
-        </ModifyButton>
-        <DeleteButton onClick={() => deletePost(post._id)}>Supprimer</DeleteButton>
-        </Buttons>
-        <Likes post={post}/>
+        {isAdmin || localStorage.userId === post.userId ?
+          (<Buttons>
+            <ModifyButton>
+              <Link style={linkStyle} to={`/modify/${post._id}`}>Modifier</Link>
+            </ModifyButton>
+            <DeleteButton onClick={() => deletePost(post._id)}>Supprimer</DeleteButton>
+          </Buttons>) : null
+        }
+        <Likes post={post} />
       </MainImageSeeOne>
     </>
   );

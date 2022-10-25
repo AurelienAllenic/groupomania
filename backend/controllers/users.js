@@ -70,13 +70,13 @@ exports.delete = (req, res, next) => {
     })
     .catch((err) => next(err));
 };
-// READ ONE
+// Get ONE
 exports.getOneUser = (req, res, next) => {
   UserModel.findOne({ _id: req.params.id })
     .then((user) => res.status(200).json(user))
     .catch((error) => res.status(404).json({ error }));
 };
-// READ ALL
+// Get ALL
 exports.getAllUsers = (req, res, next) => {
   UserModel.find()
     .then((users) => res.status(200).json(users))

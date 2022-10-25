@@ -11,21 +11,21 @@ const Home = () => {
     color: "#fd230d",
   };
   const navigate = useNavigate();
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = data => {
     axios.post('http://localhost:4000/api/auth/login', data)
-    .then(res => {
-      // On enregistre le token dans le localStorage
-      localStorage.token = res.data.token;
-      // Ajout du userId
-      localStorage.userId = res.data.userId;
-      // On "enregistre" le token dans la conf. de Axios
-      axios.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
-      // On "navigate" (redirige) vers '/my-posts'
-      navigate('/my-posts');
-    }).catch(err => {
-      alert(err.message + ' - Paire email / mot de passe incorrecte');
-    })
+      .then(res => {
+        // On enregistre le token dans le localStorage
+        localStorage.token = res.data.token;
+        // Ajout du userId
+        localStorage.userId = res.data.userId;
+        // On "enregistre" le token dans la conf. de Axios
+        axios.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
+        // On "navigate" (redirige) vers '/my-posts'
+        navigate('/my-posts');
+      }).catch(err => {
+        alert(err.message + ' - Paire email / mot de passe incorrecte');
+      })
   }
   return (
     <>
