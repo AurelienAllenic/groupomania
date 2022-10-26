@@ -2,11 +2,10 @@ const express = require("express");
 const router = express.Router();
 const Post = require("../models/post");
 const fs = require("fs");
-const AdminUser = require("../admin/admin");
 
 exports.create = (req, res, next) => {
   console.log(req.body);
-  const postObject = JSON.parse(req.body.post);
+  const postObject = req.body;
   console.log(req.auth);
   delete postObject._id;
   const post = new Post({
@@ -31,11 +30,12 @@ exports.create = (req, res, next) => {
 };
 
 exports.delete = (req, res, next) => {
+  console.log(req.auth.admin, "admin");
   Post.findOne({ _id: req.params.id })
     .then((post) => {
-      if (post.userId != req.auth.userId) {
+      if (post.userId != req.auth.userId && req.auth.admin == false) {
         res.status(401).json({ message: "Not authorized" });
-      } else if (post.userId == req.auth.userId || user == AdminUser) {
+      } else {
         const filename = post.imageUrl.split("assets/images/")[1];
         fs.unlink(`assets/images/${filename}`, () => {
           Post.deleteOne({ _id: req.params.id })
@@ -66,7 +66,7 @@ exports.displayOne = (req, res, next) => {
 exports.modify = (req, res, next) => {
   const postObject = req.file
     ? {
-        ...JSON.parse(req.body.post),
+        ...req.body,
         imageUrl: `${req.protocol}://${req.get("host")}/../../assets/images/${
           req.file.filename
         }`,
@@ -76,14 +76,14 @@ exports.modify = (req, res, next) => {
   delete postObject._userId;
   Post.findOne({ _id: req.params.id })
     .then((post) => {
-      if (post.userId != req.auth.userId) {
+      if (post.userId != req.auth.userId && req.auth.admin == false) {
         res.status(401).json({ message: "Not authorized" });
-      } else if (post.userId == req.auth.userId || user == AdminUser) {
+      } else {
         Post.updateOne(
           { _id: req.params.id },
           { ...postObject, _id: req.params.id }
         )
-          .then(() => res.status(200).json({ message: "Objet modifié!" }))
+          .then(() => res.status(200).json({ message: "Post modifié!" }))
           .catch((error) => res.status(401).json({ error }));
       }
     })
@@ -94,7 +94,7 @@ exports.modify = (req, res, next) => {
 
 exports.displayAll = (req, res, next) => {
   console.log("Affichage de tous les posts");
-  Post.find()
+  Post.find().sort({createdAt: -1})
     .then((posts) => {
       console.log(posts[0]);
       res.status(200).json(posts);
@@ -107,57 +107,24 @@ exports.displayAll = (req, res, next) => {
 };
 
 exports.like = (req, res, next) => {
-  if (req.body.like == 1) {
-    Post.updateOne(
-      { _id: req.params.id },
-      { $push: { usersLiked: req.body.userId }, $inc: { likes: +1 } }
-    )
-      .then(() => res.status(200).json({ message: "Post liké !" }))
-      .catch((error) => res.status(400).json({ error }));
-  }
+  Post.findOne({ _id: req.params.id }).then((post) => {
+    if(post.usersLiked.includes(req.auth.userId)) {
+      Post.updateOne(
+        {_id: req.params.id},
+        {$pull : {usersLiked: req.auth.userId }, $inc: {likes: -1}}
+      ).then(() => 
+        res.status(200).json({message: "Ce post ne vous intéresse plus !", likeActive: false,})
+      ).catch((error) => res.status(400).json({error}));
+    } else {
+      Post.updateOne(
+        {_id: req.params.id},
+        {$push: {usersLiked: req.auth.userId}, $inc: {likes: +1} }
+      ).then(() => 
+      res.status(200).json({message: "post liké !", likeActive: true})
+      ).catch((error) => 
+      res.status(400).json({error})
+      )
+    }
+  })
+} 
 
-  if (req.body.like == 0) {
-    Post.findOne({ _id: req.params.id })
-      .then((post) => {
-        if (post.usersLiked.includes(req.body.userId)) {
-          Post.updateOne(
-            { _id: req.params.id },
-            { $pull: { usersLiked: req.body.userId }, $inc: { likes: -1 } }
-          )
-            .then(() =>
-              res
-                .status(200)
-                .json({ message: "Ce Post ne vous intéresse plus !" })
-            )
-            .catch((error) => res.status(400).json({ error }));
-        }
-        if (post.usersDisliked.includes(req.body.userId)) {
-          Post.updateOne(
-            { _id: req.params.id },
-            {
-              $pull: { usersDisliked: req.body.userId },
-              $inc: { dislikes: -1 },
-            }
-          )
-            .then(() =>
-              res
-                .status(200)
-                .json({ message: "Ce Post ne vous intéresse plus !" })
-            )
-            .catch((error) => res.status(400).json({ error }));
-        }
-      })
-      .catch((error) => res.status(400).json({ error }));
-  }
-
-  if (req.body.like == -1) {
-    Post.updateOne(
-      { _id: req.params.id },
-      { $push: { usersDisliked: req.body.userId }, $inc: { dislikes: +1 } }
-    )
-      .then(() => res.status(200).json({ message: "Post disliké !" }))
-      .catch((error) => res.status(400).json({ error }));
-    console.log("Post disliké !");
-  }
-  console.log(req.body);
-};
